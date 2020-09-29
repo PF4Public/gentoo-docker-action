@@ -1,0 +1,5 @@
+FROM --platform=386 pf4public/gentoo
+
+COPY entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
