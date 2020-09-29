@@ -1,0 +1,17 @@
+name: 'Docker action'
+description: 'Docker action'
+inputs:
+  arch:
+    required: true
+  ebuild:
+    required: true
+  action:
+    required: true
+  use:
+    required: true
+    
+runs:
+  using: 'docker'
+  image: 'Dockerfile-${{ inputs.arch }}'
+  args:
+    - ${{ inputs.ebuild }} ${{ inputs.action }} ${{ inputs.use }}
