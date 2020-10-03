@@ -8,7 +8,10 @@ echo "sort:"
 list=$((echo "$1" | grep -Po '"\K[^"]*.ebuild'; echo "$2" |grep -Po '"\K[^"]*.ebuild') | sort -du)
 echo -e "list:\n$list\n"
 
-IFS=$'\n' combined=($list)
+SAVEIFS=$IFS
+IFS=$'\n'
+combined=($list)
+IFS=$SAVEIFS
 
 echo -e "combined:\n$combined\n"
 echo -e "combined0:\n${combined[0]}\n"
