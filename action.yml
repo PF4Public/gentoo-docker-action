@@ -1,7 +1,9 @@
 name: 'Docker action'
 description: 'Docker action'
 inputs:
-  ebuild:
+  added:
+    required: true
+  modified:
     required: true
   action:
     required: true
@@ -12,6 +14,7 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.ebuild }}
+    - ${{ inputs.added }}
+    - ${{ inputs.modified }}
     - ${{ inputs.action }}
     - ${{ inputs.use }}
