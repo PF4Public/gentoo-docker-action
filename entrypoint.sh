@@ -14,8 +14,11 @@ echo -e "combined:\n$combined\n"
 echo -e "combined0:\n${combined[0]}\n"
 
 #for i in "${combined[@]}"
-for i in "$list"
-do
+#for i in "$list"
+#do
+set -- junk $list
+shift
+for i; do
 echo -e "i:\n$i\n"
    USE="${@:4}" ebuild $i $3
    RETVAL=$?
