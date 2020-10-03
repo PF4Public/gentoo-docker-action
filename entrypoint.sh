@@ -1,12 +1,14 @@
 #!/bin/sh -l
 
-echo "files_modified.json:"
-cat ${HOME}/files_modified.json
-echo "files_added.json:"
-cat ${HOME}/files_added.json
+mapfile -t my_array1 < <( echo "$1" |grep -Po '"\K[^"]*.ebuild' )
+mapfile -t my_array2 < <( echo "$2" |grep -Po '"\K[^"]*.ebuild' )
 
-cd "$1"
-ls -la
-newest=$(ls -At *.ebuild | head -n 1)
+OLDIFS="$IFS"
+IFS=$'\n'
+combined=(`for R in "${my_array1[@]}" "${my_array2[@]}" ; do echo "$R" ; done | sort -du`)
+IFS="$OLDIFS"
 
-USE="${@:3}" ebuild $newest $2
+for i in "${combined[@]}"
+do
+   USE="${@:4}" ebuild $i $3
+done
