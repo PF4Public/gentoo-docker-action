@@ -1,11 +1,8 @@
-#!/bin/bash
-
-mapfile -t my_array1 < <( echo "$1" |grep -Po '"\K[^"]*.ebuild' )
-mapfile -t my_array2 < <( echo "$2" |grep -Po '"\K[^"]*.ebuild' )
+#!/bin/sh
 
 OLDIFS="$IFS"
 IFS=$'\n'
-combined=(`for R in "${my_array1[@]}" "${my_array2[@]}" ; do echo "$R" ; done | sort -du`)
+combined=$((echo "$1" | grep -Po '"\K[^"]*.ebuild'; echo "$2" |grep -Po '"\K[^"]*.ebuild') | sort -du`)
 IFS="$OLDIFS"
 
 for i in "${combined[@]}"
