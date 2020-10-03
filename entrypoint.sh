@@ -1,4 +1,4 @@
-#!/bin/sh -l
+#!/bin/bash
 
 mapfile -t my_array1 < <( echo "$1" |grep -Po '"\K[^"]*.ebuild' )
 mapfile -t my_array2 < <( echo "$2" |grep -Po '"\K[^"]*.ebuild' )
