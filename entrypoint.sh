@@ -5,13 +5,10 @@ EXIT_CODE=0
 echo "sort:"
 (echo "$1" | grep -Po '"\K[^"]*.ebuild'; echo "$2" |grep -Po '"\K[^"]*.ebuild') | sort -du
 
-list=$((echo "$1" | grep -Po '"\K[^"]*.ebuild'; echo "$2" |grep -Po '"\K[^"]*.ebuild') | sort -du)
+list=$((echo "$1" | grep -Po '"\K[^"]*.ebuild'; echo "$2" |grep -Po '"\K[^"]*.ebuild') | sort -du | tr '\n' ' ')
 echo -e "list:\n$list\n"
 
-SAVEIFS=$IFS
-IFS=$'\n'
 combined=($list)
-IFS=$SAVEIFS
 
 echo -e "combined:\n$combined\n"
 echo -e "combined0:\n${combined[0]}\n"
