@@ -1,6 +1,9 @@
 #!/bin/sh
 
-combined=($((echo "$1" | grep -Po '"\K[^"]*.ebuild'; echo "$2" |grep -Po '"\K[^"]*.ebuild') | sort -du))
+echo -e "sort:\n"
+(echo "$1" | grep -Po '"\K[^"]*.ebuild'; echo "$2" |grep -Po '"\K[^"]*.ebuild') | sort -du
+
+IFS=$'\n' combined=($((echo "$1" | grep -Po '"\K[^"]*.ebuild'; echo "$2" |grep -Po '"\K[^"]*.ebuild') | sort -du))
 
 echo -e "combined:\n$combined\n"
 echo -e "combined0:\n${combined[0]}\n"
