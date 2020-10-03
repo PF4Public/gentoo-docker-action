@@ -2,6 +2,10 @@
 
 EXIT_CODE=0
 
+USE_FLAGS="${@:4}"
+ACTION="$3"
+
+
 echo "sort:"
 (echo "$1" | grep -Po '"\K[^"]*.ebuild'; echo "$2" |grep -Po '"\K[^"]*.ebuild') | sort -du
 
@@ -20,7 +24,7 @@ set -- junk $list
 shift
 for i; do
 echo -e "i:\n$i\n"
-   USE="${@:4}" ebuild $i $3
+   USE="$USE_FLAGS" ebuild $i $ACTION
    RETVAL=$?
    if [ $RETVAL -ne 0 ]
    then
