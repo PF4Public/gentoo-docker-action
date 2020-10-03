@@ -2,7 +2,7 @@
 
 OLDIFS="$IFS"
 IFS=$'\n'
-combined=$((echo "$1" | grep -Po '"\K[^"]*.ebuild'; echo "$2" |grep -Po '"\K[^"]*.ebuild') | sort -du)
+combined=($((echo "$1" | grep -Po '"\K[^"]*.ebuild'; echo "$2" |grep -Po '"\K[^"]*.ebuild') | sort -du))
 IFS="$OLDIFS"
 
 echo "$combined"
