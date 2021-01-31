@@ -11,7 +11,7 @@ list=$((echo "$1" | grep -Po '"\K[^"]*.ebuild'; echo "$2" |grep -Po '"\K[^"]*.eb
 set -- junk $list
 shift
 for i; do
-   USE="$USE_FLAGS" NODIE=1 ebuild $i $ACTION
+   USE="$USE_FLAGS" NODIE=1 I_KNOW_WHAT_I_AM_DOING=yes ebuild $i $ACTION
    RETVAL=$?
    if [ $RETVAL -ne 0 ]
    then
