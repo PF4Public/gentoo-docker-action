@@ -26,10 +26,10 @@ for i; do
         USE="$USE_FLAGS" NODIE=1 I_KNOW_WHAT_I_AM_DOING=yes ebuild $i $ACTION
         RETVAL=$?
     elif [ "$TOOL" == "repoman" ]; then
-        push $i
+        pushd $i
             repoman $ACTION $PARAMS
             RETVAL=$?
-        pop
+        popd
     elif [ "$TOOL" == "emerge" ]; then
         echo "TODO!"
         exit 1
