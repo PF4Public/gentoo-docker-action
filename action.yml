@@ -5,10 +5,12 @@ inputs:
     required: true
   modified:
     required: true
+  tool:
+    required: true
   action:
-    required: true
-  use:
-    required: true
+    required: false
+  params:
+    required: false
     
 runs:
   using: 'docker'
@@ -16,5 +18,6 @@ runs:
   args:
     - ${{ inputs.added }}
     - ${{ inputs.modified }}
+    - ${{ inputs.tool }}
     - ${{ inputs.action }}
-    - ${{ inputs.use }}
+    - ${{ inputs.params }}
