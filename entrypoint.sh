@@ -9,8 +9,8 @@ if [ "$TOOL" == "ebuild" ]; then
     ACTION="$4"
     USE_FLAGS="${@:5}"
 elif [ "$TOOL" == "repoman" ]; then
-    list1=$((echo "$1" | grep -Po '"\K[^"]*(.ebuild|Manifest|.xml)'; echo "$2" |grep -Po '"\K[^"]*(.ebuild|Manifest|.xml)') | sort -du | tr '\n' ' ')
-    list=$(dirname "$list1" | sort -du | uniq | tr '\n' ' ')
+    list=$((echo "$1" | grep -Po '"\K[^"]*(.ebuild|Manifest|.xml)'; echo "$2" |grep -Po '"\K[^"]*(.ebuild|Manifest|.xml)') | sort -du | tr '\n' ' ')
+    list=$(dirname $list | sort -du | uniq | tr '\n' ' ')
     ACTION="$4"
     PARAMS="${@:5}"
 elif [ "$TOOL" == "emerge" ]; then
