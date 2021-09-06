@@ -1,7 +1,6 @@
 #!/bin/sh
 
 echo "DISTDIR=${GITHUB_WORKSPACE}/distfiles" >> /etc/portage/make.conf
-cat  /etc/portage/make.conf
 
 EXIT_CODE=0
 
@@ -43,5 +42,7 @@ for i; do
         EXIT_CODE=$RETVAL
     fi
 done
+
+eclean distfiles
 
 exit $EXIT_CODE
