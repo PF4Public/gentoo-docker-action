@@ -43,6 +43,5 @@ for i; do
     fi
 done
 
-eclean distfiles
 
 exit $EXIT_CODE
