@@ -1,7 +1,5 @@
 #!/bin/sh
 
-echo "DISTDIR=${WHERE_DISTFILES}" >> /etc/portage/make.conf
-
 EXIT_CODE=0
 
 TOOL="$3"
