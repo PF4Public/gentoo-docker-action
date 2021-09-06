@@ -1,6 +1,7 @@
 #!/bin/sh
 
 echo "\nDISTDIR=${GITHUB_WORKSPACE}/distfiles" >> /etc/portage/make.conf
+cat  /etc/portage/make.conf
 
 EXIT_CODE=0
 
