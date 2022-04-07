@@ -29,7 +29,7 @@ for i; do
         RETVAL=$?
     elif [ "$TOOL" == "repoman" ]; then
         pushd $i
-            repoman $ACTION $PARAMS
+            repoman --ignore-arches $ACTION $PARAMS
             RETVAL=$?
         popd
     elif [ "$TOOL" == "emerge" ]; then
