@@ -27,6 +27,7 @@ for i; do
     if [ "$TOOL" == "ebuild" ]; then
         USE="$USE_FLAGS" NODIE=1 I_KNOW_WHAT_I_AM_DOING=yes ebuild $i $ACTION
         RETVAL=$?
+        USE="$USE_FLAGS" NODIE=1 I_KNOW_WHAT_I_AM_DOING=yes ebuild $i clean
     elif [ "$TOOL" == "repoman" ]; then
         pushd $i
             repoman --ignore-arches $ACTION $PARAMS
@@ -42,6 +43,5 @@ for i; do
         EXIT_CODE=$RETVAL
     fi
 done
-
 
 exit $EXIT_CODE
