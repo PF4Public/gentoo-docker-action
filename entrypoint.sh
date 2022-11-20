@@ -10,7 +10,7 @@ if [ "$TOOL" == "ebuild" ]; then
     list=$((echo "$1" | grep -Po '"\K[^"]*.ebuild'; echo "$2" |grep -Po '"\K[^"]*.ebuild') | sort -du | tr '\n' ' ')
     ACTION="$4"
     USE_FLAGS="${@:5}"
-elif [ "$TOOL" == "repoman" ]; then
+elif [ "$TOOL" == "repoman" ] || [ "$TOOL" == "pkgcheck" ]; then
     list=$((echo "$1" | grep -Po '"\K[^"]*(.ebuild|Manifest|.xml)'; echo "$2" |grep -Po '"\K[^"]*(.ebuild|Manifest|.xml)') | sort -du | tr '\n' ' ')
     list=$(dirname $list | sort -du | uniq | tr '\n' ' ')
     ACTION="$4"
@@ -31,6 +31,11 @@ for i; do
     elif [ "$TOOL" == "repoman" ]; then
         pushd $i
             repoman --ignore-arches $ACTION $PARAMS
+            RETVAL=$?
+        popd
+    elif [ "$TOOL" == "pkgcheck" ]; then
+        pushd $i
+            pkgcheck $ACTION $PARAMS
             RETVAL=$?
         popd
     elif [ "$TOOL" == "emerge" ]; then
