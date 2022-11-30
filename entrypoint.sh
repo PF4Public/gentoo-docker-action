@@ -35,7 +35,7 @@ for i; do
         popd
     elif [ "$TOOL" == "pkgcheck" ]; then
         pushd $i
-            pkgcheck $ACTION $PARAMS
+            pkgcheck $ACTION $PARAMS --color true
             RETVAL=$?
         popd
     elif [ "$TOOL" == "emerge" ]; then
