@@ -7,11 +7,11 @@ EXIT_CODE=0
 TOOL="$2"
 
 if [ "$TOOL" == "ebuild" ]; then
-    list=$((echo "$1" | grep -Po '"\K[^"]*.ebuild') | sort -du | tr '\n' ' ')
+    list=$((echo "$1" | grep -Po '*.ebuild') | sort -du | tr '\n' ' ')
     ACTION="$3"
     USE_FLAGS="${@:4}"
 elif [ "$TOOL" == "repoman" ] || [ "$TOOL" == "pkgcheck" ]; then
-    list=$((echo "$1" | grep -Po '"\K[^"]*(.ebuild|Manifest|.xml)') | sort -du | tr '\n' ' ')
+    list=$((echo "$1" | grep -Po '*(.ebuild|Manifest|.xml)') | sort -du | tr '\n' ' ')
     list=$(dirname $list | sort -du | uniq | tr '\n' ' ')
     ACTION="$3"
     PARAMS="${@:4}"
