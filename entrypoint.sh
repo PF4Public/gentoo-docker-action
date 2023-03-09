@@ -4,17 +4,17 @@ echo "DISTDIR=${GITHUB_WORKSPACE}/distfiles" >> /etc/portage/make.conf
 
 EXIT_CODE=0
 
-TOOL="$3"
+TOOL="$2"
 
 if [ "$TOOL" == "ebuild" ]; then
-    list=$((echo "$1" | grep -Po '"\K[^"]*.ebuild'; echo "$2" |grep -Po '"\K[^"]*.ebuild') | sort -du | tr '\n' ' ')
-    ACTION="$4"
-    USE_FLAGS="${@:5}"
+    list=$((echo "$1" | grep -Po '"\K[^"]*.ebuild') | sort -du | tr '\n' ' ')
+    ACTION="$3"
+    USE_FLAGS="${@:4}"
 elif [ "$TOOL" == "repoman" ] || [ "$TOOL" == "pkgcheck" ]; then
-    list=$((echo "$1" | grep -Po '"\K[^"]*(.ebuild|Manifest|.xml)'; echo "$2" |grep -Po '"\K[^"]*(.ebuild|Manifest|.xml)') | sort -du | tr '\n' ' ')
+    list=$((echo "$1" | grep -Po '"\K[^"]*(.ebuild|Manifest|.xml)') | sort -du | tr '\n' ' ')
     list=$(dirname $list | sort -du | uniq | tr '\n' ' ')
-    ACTION="$4"
-    PARAMS="${@:5}"
+    ACTION="$3"
+    PARAMS="${@:4}"
 elif [ "$TOOL" == "emerge" ]; then
     echo "TODO!"
     exit 1
