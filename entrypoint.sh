@@ -1,6 +1,7 @@
 #!/bin/sh
 
 echo "DISTDIR=${GITHUB_WORKSPACE}/distfiles" >> /etc/portage/make.conf
+echo "CCACHE_DIR=${GITHUB_WORKSPACE}/ccache" >> /etc/portage/make.conf
 
 EXIT_CODE=0
 
