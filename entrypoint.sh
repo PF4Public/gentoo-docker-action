@@ -3,6 +3,25 @@
 echo "DISTDIR=${GITHUB_WORKSPACE}/distfiles" >> /etc/portage/make.conf
 echo "CCACHE_DIR=${GITHUB_WORKSPACE}/ccache" >> /etc/portage/make.conf
 
+if [ -d "${GITHUB_WORKSPACE}/npm-cache" ]; then
+    export NPM_CONFIG_CACHE="${GITHUB_WORKSPACE}/npm-cache"
+fi
+if [ -d "${GITHUB_WORKSPACE}/yarn-cache" ]; then
+    export YARN_CACHE_FOLDER="${GITHUB_WORKSPACE}/yarn-cache"
+fi
+if [ -d "${GITHUB_WORKSPACE}/pnpm-cache" ]; then
+    export PNPM_HOME="${GITHUB_WORKSPACE}/pnpm-cache"
+fi
+if [ -d "${GITHUB_WORKSPACE}/cargo-cache" ]; then
+    export CARGO_HOME="${GITHUB_WORKSPACE}/cargo-cache"
+fi
+if [ -d "${GITHUB_WORKSPACE}/go-cache" ]; then
+    export GOCACHE="${GITHUB_WORKSPACE}/go-cache"
+fi
+if [ -d "${GITHUB_WORKSPACE}/go-mod-cache" ]; then
+    export GOMODCACHE="${GITHUB_WORKSPACE}/go-mod-cache"
+fi
+
 EXIT_CODE=0
 
 TOOL="$2"
