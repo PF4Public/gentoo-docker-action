@@ -12,8 +12,9 @@ if [ "$TOOL" == "ebuild" ]; then
     ACTION="$3"
     USE_FLAGS="${@:4}"
 elif [ "$TOOL" == "repoman" ] || [ "$TOOL" == "pkgcheck" ]; then
-    list=$((echo "$1" | grep -Po '[^ ]*(.ebuild|Manifest|.xml)' ) | sort -du | tr '\n' ' ')
+    list=$((echo "$1" | grep -Po '[^ ]*(.ebuild|Manifest|.xml|.eclass|.desc)' ) | sort -du | tr '\n' ' ')
     list=$(dirname $list | sort -du | uniq | tr '\n' ' ')
+    [ -n "$list" ] || list="${GITHUB_WORKSPACE}"
     ACTION="$3"
     PARAMS="${@:4}"
 elif [ "$TOOL" == "emerge" ]; then
