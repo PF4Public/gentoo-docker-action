@@ -3,9 +3,10 @@
 echo "DISTDIR=${GITHUB_WORKSPACE}/distfiles" >> /etc/portage/make.conf
 echo "CCACHE_DIR=${GITHUB_WORKSPACE}/ccache" >> /etc/portage/make.conf
 
-# export CCACHE_DIR too: make.conf only feeds portage (FEATURES="ccache"),
-# but CMake launches ccache directly and reads it from the environment
-export CCACHE_DIR="${GITHUB_WORKSPACE}/ccache"
+# enable the ccache feature, otherwise portage ignores CCACHE_DIR and
+# does not export it to the build environment (where CMake-launched
+# ccache would otherwise fall back to /root/.cache/ccache)
+echo 'FEATURES="${FEATURES} ccache"' >> /etc/portage/make.conf
 
 if [ -d "${GITHUB_WORKSPACE}/npm-cache" ]; then
     export NPM_CONFIG_CACHE="${GITHUB_WORKSPACE}/npm-cache"
